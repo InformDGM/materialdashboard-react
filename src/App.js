@@ -45,6 +45,8 @@ import { CacheProvider } from "@emotion/react";
 import createCache from "@emotion/cache";
 import Dashboard from "layouts/dashboard";
 import SignIn from "layouts/authentication/sign-in";
+import SignUp from "layouts/authentication/sign-up";
+
 import HomePageLayout from "layouts/authentication/components/Pages/Home";
 
 // import NavigationBar from "components/NavBar/Navbar";
@@ -58,6 +60,9 @@ import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "co
 // Images
 import brandWhite from "assets/images/logo-ct.png";
 import brandDark from "assets/images/logo-ct-dark.png";
+
+// eslint-disable-next-line
+import firebaseConfig from "./firebase";
 
 export default function App() {
   const [controller, dispatch] = useMaterialUIController();
@@ -93,13 +98,13 @@ export default function App() {
   //   return <h2>Home (Protected: authenticated user required)</h2>;
   // };
 
-  const Dashboard = () => {
-    return (
-      <button type="button" onClick={() => handleLogout()}>
-        Log Out{" "}
-      </button>
-    );
-  };
+  // const Dashboard = () => {
+  //   return (
+  //     <button type="button" onClick={() => handleLogout()}>
+  //       Log Out{" "}
+  //     </button>
+  //   );
+  // };
 
   // Cache for the rtl
   useMemo(() => {
@@ -145,7 +150,8 @@ export default function App() {
     console.log("user status protected layout");
 
     if (!user) {
-      return <Navigate to={redirectPath} replace />;
+      // return <Navigate to={redirectPath} replace />;
+      return <Navigate to="/sign-in" />;
     }
 
     return children ? children : <Outlet />;
